@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # Initialization Window
-
+# test 
 window = Tk()
 
 window.title("Genetic Optimization of Continuous Functions")
