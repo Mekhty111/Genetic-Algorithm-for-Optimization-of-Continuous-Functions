@@ -107,38 +107,10 @@ import itertools
 
 inpp = funksiya
 
-if (inpp.find('[9]') != -1):
-	dim111 = 10
-
-elif (inpp.find('[8]') != -1):
-	dim111 = 9
-
-elif (inpp.find('[7]') != -1):
-	dim111 = 8
-
-elif (inpp.find('[6]') != -1):
-	dim111 = 7
-
-elif (inpp.find('[5]') != -1):
-	dim111 = 6
-
-elif (inpp.find('[4]') != -1):
-	dim111 = 5
-
-elif (inpp.find('[3]') != -1):
-	dim111 = 4
-
-elif (inpp.find('[2]') != -1):
-	dim111 = 3
-
-elif (inpp.find('[1]') != -1):
-	dim111 = 2
-	
-else:
-	dim111 = 1
-
-
-
+dim111 = 0 
+for i in inpp:
+    if i == '[':
+        dim111 += 1
 
 # ___________________________________________
 
@@ -235,8 +207,9 @@ def crossover(parents):
 	b2=[None]*pop
 	kids_ND = [None]*pop
 	for m in range(pop):
-		b1[m] = np.array( parents[m][0] ) - alpha*( np.array( parents[m][1] )-np.array( parents[m][0] ) )
-		b2[m] = np.array( parents[m][1] ) + alpha*( np.array( parents[m][1] )-np.array( parents[m][0] ) )
+		parents = np.array(parents)  # shape (M, 2, N)
+		b1 = parents[:, 0, :] - alpha * (parents[:, 1, :] - parents[:, 0, :])
+		b2 = parents[:, 1, :] + alpha * (parents[:, 1, :] - parents[:, 0, :])
 	for u in range(pop):
 		kids_ND[u] = np.random.uniform(b1[u],b2[u])
 	res4 = kids_ND
